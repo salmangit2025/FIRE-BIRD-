@@ -1,0 +1,84 @@
+<Window
+    x:Class="Fire_Bird.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+>
+    <Grid Background="#0B1020" Padding="18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,14">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Spacing="3">
+                <TextBlock Text="FIRE BIRD" FontSize="28" FontWeight="Bold"
+                           Foreground="#FFF4F4" CharacterSpacing="160"/>
+                <TextBlock Text="Aim • Shoot • Survive" FontSize="13" Foreground="#9AA7C5"/>
+            </StackPanel>
+            <Border Grid.Column="1" Background="#17213A" CornerRadius="12" Padding="16,9" Margin="8,0">
+                <StackPanel>
+                    <TextBlock Text="SCORE" FontSize="10" Foreground="#9AA7C5" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="ScoreText" Text="0" FontSize="22" FontWeight="Bold"
+                               Foreground="#FFFFFF" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="2" Background="#17213A" CornerRadius="12" Padding="16,9">
+                <StackPanel>
+                    <TextBlock Text="LIVES" FontSize="10" Foreground="#9AA7C5" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="LivesText" Text="♥ ♥ ♥" FontSize="20" Foreground="#FF5C75"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="1" BorderBrush="#283653" BorderThickness="1" CornerRadius="18"
+                Background="#10182B" Padding="8">
+            <Grid>
+                <Canvas x:Name="GameCanvas" Background="#10182B"
+                        PointerMoved="GameCanvas_PointerMoved"
+                        PointerPressed="GameCanvas_PointerPressed"
+                        SizeChanged="GameCanvas_SizeChanged"
+                        IsTabStop="True">
+                    <TextBlock x:Name="HintText" Text="CLICK OR TAP TO SHOOT"
+                               Foreground="#7183A8" FontSize="12"
+                               Canvas.Left="20" Canvas.Top="18"/>
+                    <TextBlock x:Name="BirdText" Text="🐦‍🔥" FontSize="42"
+                               Canvas.Left="180" Canvas.Top="140"/>
+                    <Ellipse x:Name="AimRing" Width="28" Height="28" Stroke="#FF566D"
+                             StrokeThickness="2" Canvas.Left="100" Canvas.Top="100"
+                             IsHitTestVisible="False"/>
+                    <Line x:Name="AimHorizontal" X1="0" X2="18" Y1="0" Y2="0"
+                          Stroke="#FF566D" StrokeThickness="2" IsHitTestVisible="False"/>
+                    <Line x:Name="AimVertical" X1="0" X2="0" Y1="0" Y2="18"
+                          Stroke="#FF566D" StrokeThickness="2" IsHitTestVisible="False"/>
+                    <TextBlock x:Name="GameOverText" Text="GAME OVER"
+                               FontSize="34" FontWeight="Bold" Foreground="White"
+                               Visibility="Collapsed"/>
+                </Canvas>
+                <Border VerticalAlignment="Top" HorizontalAlignment="Right"
+                        Background="#CC17213A" CornerRadius="10" Padding="10,7" Margin="8"
+                        IsHitTestVisible="False">
+                    <TextBlock Text="Move mouse to aim • Click to fire" Foreground="#CFD8EE" FontSize="11"/>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="2" Margin="0,14,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="StatusText" Text="Ready! Hit the bird to score points."
+                       VerticalAlignment="Center" Foreground="#AAB6D0" FontSize="13"/>
+            <Button x:Name="RestartButton" Grid.Column="1" Content="Restart Game"
+                    Click="RestartButton_Click" Padding="18,10"
+                    Background="#F04B62" Foreground="White" CornerRadius="10"/>
+        </Grid>
+    </Grid>
+</Window>
